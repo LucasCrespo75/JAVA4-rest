@@ -45,11 +45,6 @@ public class Calculadora {
 		if(valor1 == 0) {
 			System.out.println("NAO PODE SER DIVISIVEL POR ZERO");
 		}
-		if(valor2 == 0) {
-			System.out.println("NAO PODE SER DIVISIVEL POR ZERO");
-		}
-	
 		return "" + (valor1%valor2);
-
 	}
 }
