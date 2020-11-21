@@ -6,6 +6,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import entidade.RetornoCalculadora;
+
 @Path("/calculadora")
 public class Calculadora {
 
@@ -18,33 +20,61 @@ public class Calculadora {
 
 	@Path("/somar")
 	@GET
-	@Produces(MediaType.TEXT_PLAIN)
-	public String somar(@QueryParam("valor1") double valor1, @QueryParam("valor2") double valor2) {
-		return "" + (valor1 + valor2);
+	@Produces(MediaType.APPLICATION_JSON)
+	public RetornoCalculadora  somar(@QueryParam("valor1") double valor1, @QueryParam("valor2") double valor2) {
+			
+		RetornoCalculadora retorno = new RetornoCalculadora();
+		retorno.setCodigoRetorno(0);
+		retorno.setMensagemRetorno("SUCESSO!!");
+		retorno.setResultado(valor1 + valor2);
+		
+		return retorno;
 		
 	}
 
 	@Path("/subtrair")
 	@GET
-	@Produces(MediaType.TEXT_PLAIN)
-	public String subtrair(@QueryParam("valor1") double valor1, @QueryParam("valor2") double valor2) {
-		return "" + (valor1 - valor2);
+	@Produces(MediaType.APPLICATION_JSON)
+	public RetornoCalculadora  subtrair(@QueryParam("valor1") double valor1, @QueryParam("valor2") double valor2) {
+		
+		RetornoCalculadora retorno = new RetornoCalculadora();
+		retorno.setCodigoRetorno(0);
+		retorno.setMensagemRetorno("SUCESSO!!");
+		retorno.setResultado(valor1 - valor2);
+		
+		return retorno;
 }
 	@Path("/multiplicacao")
 	@GET
-	@Produces(MediaType.TEXT_PLAIN)
-	public String multiplicacao(@QueryParam("valor1") double valor1, @QueryParam("valor2") double valor2) {
-		return "" + (valor1*valor2);
+	@Produces(MediaType.APPLICATION_JSON)
+	public RetornoCalculadora  multiplicacao(@QueryParam("valor1") double valor1, @QueryParam("valor2") double valor2) {
+		
+		RetornoCalculadora retorno = new RetornoCalculadora();
+		retorno.setCodigoRetorno(0);
+		retorno.setMensagemRetorno("SUCESSO!!");
+		retorno.setResultado(valor1 * valor2);
+		
+		return retorno;
 }
 
 	
 	@Path("/dividir")
 	@GET
-	@Produces(MediaType.TEXT_PLAIN)
-	public String dividir(@QueryParam("valor1") double valor1, @QueryParam("valor2") double valor2) {
+	@Produces(MediaType.APPLICATION_JSON)
+	public RetornoCalculadora  dividir(@QueryParam("valor1") double valor1, @QueryParam("valor2") double valor2) {
+		
+		RetornoCalculadora retorno = new RetornoCalculadora();
+		retorno.setCodigoRetorno(0);
+		retorno.setMensagemRetorno("SUCESSO!!");
+		retorno.setResultado(valor1/valor2);
+	
 		if(valor1 == 0) {
-			System.out.println("NAO PODE SER DIVISIVEL POR ZERO");
-		}
-		return "" + (valor1%valor2);
+			retorno.setCodigoRetorno(1);
+			retorno.setMensagemRetorno("NAO PODE SER DIVISIVEL POR ZERO");
+		}else {
+			retorno.setResultado(valor1/valor2);
 	}
+		return retorno;
 }
+}
+
